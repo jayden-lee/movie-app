@@ -1,38 +1,29 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-function Movie({name}) {
-  return <h1>{name}</h1>;
-}
+class App extends React.Component {
+  state = {
+    count: 0
+  };
 
-Movie.propTypes = {
-  name: PropTypes.string.isRequired
-}
+  plus = () => {
+    console.log("plus");
+    this.setState(current => ({ count: current.count + 1 }));
+  };
 
-const movies = [
-  {
-    id: 1,
-    name: "The Lion King"
-  },
-  {
-    id: 2,
-    name: "Aladdin"
-  },
-  {
-    id: 3,
-    name: "엑시트"
+  minus = () => {
+    console.log("minus");
+    this.setState(current => ({ count: this.state.count - 1 }));
+  };
+
+  render() {
+    return (
+       <div>
+        <h1>The number is {this.state.count}</h1>
+        <button onClick={this.plus}>Plus</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    )
   }
-];
-
-function App() {
-  return (
-    <div>
-      <h1>Movie List</h1>
-      {
-        movies.map(data => <Movie key ={data.id} name={data.name}/>)
-      }
-    </div>
-  );
 }
 
 export default App;
